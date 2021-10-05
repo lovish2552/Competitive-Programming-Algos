@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int ans=INT_MAX;
+    int previous=INT_MAX;
+    void solve(TreeNode* root)
+    {
+        if(root==NULL)
+            return;
+        solve(root->left);
+        ans=min(ans,abs(root->val-previous));
+        previous=root->val;
+        solve(root->right);
+        
+    }
+    int getMinimumDifference(TreeNode* root) {
+        // inorder traversal of binary tree is ascending always
+        if(root==NULL)
+            return 0;
+        solve(root);
+        return ans;
+    }
+};
